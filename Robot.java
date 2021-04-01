@@ -17,6 +17,9 @@ public class Robot extends Actor
         checkKeyPress();
         detectBlockCollision();
         detectWallCollision();
+        eatPizza();
+        detectHome();
+        
     }    
     public void checkKeyPress()
     {
@@ -42,13 +45,29 @@ public class Robot extends Actor
     }
     public void detectBlockCollision(){
     if(isTouching(Wall.class)){
+        Greenfoot.playSound("hurt.wav");
         setLocation(50,50);
     }
 }
    public void detectWallCollision(){ 
     if(isTouching(Block.class))
     {
+        Greenfoot.playSound("hurt.wav");
         setLocation(50,50);
     }
 }
+    public void eatPizza(){
+        if(isTouching(Pizza.class)){
+            Greenfoot.playSound("eat.wav");
+            removeTouching(Pizza.class);
+        }
+    }
+    
+    public void detectHome(){
+        if(isTouching(Home.class)){
+        Greenfoot.playSound("yipee.wav");
+        setLocation(50,50);
+        }       
+    }
 }
+
